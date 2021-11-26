@@ -39,5 +39,5 @@
 
 ファイルの読み込み、書き込みを行うときの文字コードを指定します。デフォルト値は`utf-8`です。
 
-`$ python rend.py --encord utf-16`
+`$ python rend.py --encod utf-16`
 
