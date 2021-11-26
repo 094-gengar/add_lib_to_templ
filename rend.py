@@ -5,9 +5,9 @@ from pathlib import Path
 
 @click.command()
 @click.option("--to", "-o", default="template.cpp")
-@click.option("--encord", default="utf-8")
-def rend(to, encord):
-    env = Environment(loader=FileSystemLoader("./", encoding=encord))
+@click.option("--encode", default="utf-8")
+def rend(to, encode):
+    env = Environment(loader=FileSystemLoader("./", encoding=encode))
     tmpl = env.get_template("template.cpp.j2")
 
     path = Path("./")
@@ -18,7 +18,7 @@ def rend(to, encord):
     for s in files:
         s = str(s)
         print("reading " + s.replace('\\', '/') + "...  ", end="")
-        with open(s, 'r', encoding=encord) as f:
+        with open(s, 'r', encoding=encode) as f:
             m = {}
             m["name"] = s.replace('\\', '/')
             m["data"] = f.read()
@@ -27,7 +27,7 @@ def rend(to, encord):
 
     rendered_s = tmpl.render(files_data=files_data)
 
-    with open(to, 'w', encoding=encord) as f:
+    with open(to, 'w', encoding=encode) as f:
         f.write(rendered_s)
 
 
